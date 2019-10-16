@@ -62,6 +62,9 @@ public class NodoBTAVL<T extends Comparable<T>>{
             }else{
                 der = nodo;
             }
+        }else{
+            izq = null;
+            der = null;
         }
     }
 

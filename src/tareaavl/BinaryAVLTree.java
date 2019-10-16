@@ -1,9 +1,10 @@
 package tareaavl;
 
 import java.lang.NullPointerException;
+import java.util.ArrayList;
 
 public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<T>{
-    private NodoBTAVL<T> raiz;
+    public NodoBTAVL<T> raiz;
     private int cont;
 
     public BinaryAVLTree(){
@@ -37,24 +38,22 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
         if(act.getDato().equals(dato)){
             return act;
         }
-
-        NodoBTAVL<T> der = buscaNodo(dato, act.getDer());
-        NodoBTAVL<T> izq = buscaNodo(dato, act.getIzq());
-
-        if(der != null){
-            return der;
-        }
-
-        if(izq != null){
-            return izq;
-        }
         
-        return null;
+        NodoBTAVL<T> aux;
+        
+        if(dato.compareTo(act.getDato()) <= 0){
+            aux = buscaNodo(dato, act.getIzq());
+        }else{
+            aux = buscaNodo(dato, act.getDer());
+        }
+
+ 
+        return aux;
     }
 
     public void add(T elem){
         if(elem != null){
-            NodoBTAVL<T> nuevo = new NodoBTAVL<T>(elem);
+            NodoBTAVL<T> nuevo = new NodoBTAVL<>(elem);
             if(!isEmpty()){
                 NodoBTAVL<T> act = raiz;
                 boolean band = false;
@@ -64,16 +63,18 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
                         if(act.getIzq() != null){
                             act = act.getIzq();
                         }else{
-                            act.setIzq(nuevo);
-                            nuevo.setPapa(act);
+                            /*act.setIzq(nuevo);
+                            nuevo.setPapa(act);*/
+                            act.cuelga(nuevo);
                             band = true;
                         }
                     }else{
                         if(act.getDer() != null){
                             act = act.getDer();
                         }else{
-                            act.setDer(nuevo);
-                            nuevo.setPapa(act);
+                            /*act.setDer(nuevo);
+                            nuevo.setPapa(act);*/
+                            act.cuelga(nuevo);
                             band = true;
                         }
                     }
@@ -392,6 +393,37 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
             }
             
             return gamma;
+        }
+    }
+    
+    public void imprime() {
+        ArrayList<NodoBTAVL<T>> aux = new ArrayList<NodoBTAVL<T>>();
+        ArrayList<T> lista = new ArrayList<T>();
+        ArrayList<Integer> lista2 = new ArrayList<>();
+        aux.add(raiz);
+
+        NodoBTAVL<T> temp;
+        while (!aux.isEmpty()) {
+            temp = aux.remove(0);
+            
+            //System.out.println(temp.getElem());
+            
+            if(temp.getDato()!=null){
+                lista2.add(temp.getFe());   //problema
+                lista.add(temp.getDato());//problema
+            }
+            if (temp.getIzq() != null) {
+                //quitar al agregar
+                aux.add(temp.getIzq());
+            }
+            if (temp.getDer() != null) {
+                aux.add(temp.getDer());
+            }
+        }
+        while (lista.iterator().hasNext()) {
+            T x = lista.remove(0);
+            int y = lista2.remove(0);
+            System.out.println("Elemento almacenado: " + x + "  Factor de equilibrio: " + y + "\n");
         }
     }
 

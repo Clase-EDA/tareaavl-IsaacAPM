@@ -16,13 +16,33 @@ public class TareaAVL {
      */
     public static void main(String[] args) {
         BinaryAVLTree<Integer> avl = new BinaryAVLTree<Integer>();
-        avl.add(5);
-        avl.add(7);
-        avl.add(10);
-        avl.add(4);
-        avl.add(11);
-        //avl.remove(4);
-        //System.out.println(avl.find(11));
+        avl.add(100);
+        avl.add(300);
+        avl.add(400);
+        avl.add(350);
+        avl.add(375);
+        avl.add(50);
+        avl.add(200);
+        avl.add(360);
+        avl.add(380);
+        avl.add(500);
+        avl.add(390);
+        //avl.remove(375);
+        //avl.remove(50);
+        //avl.remove(400);
+        //avl.remove(380);
+        avl.imprime();
+        /*System.out.println(avl.raiz);
+        System.out.println(avl.raiz.getIzq());
+        System.out.println(avl.raiz.getDer());
+        System.out.println(avl.raiz.getIzq().getIzq());
+        System.out.println(avl.raiz.getIzq().getDer());
+        System.out.println(avl.raiz.getDer().getIzq());
+        System.out.println(avl.raiz.getDer().getDer());
+        System.out.println(avl.raiz.getDer().getIzq().getDer());
+        System.out.println(avl.raiz.getDer().getDer().getIzq());
+        System.out.println(avl.raiz.getDer().getDer().getDer());
+        System.out.println(avl.raiz.getDer().getDer().getDer());*/
        
     }
     
