@@ -295,11 +295,70 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
             alfa.cuelga(D);
             beta.cuelga(A);
             beta.cuelga(B);
+            
+            if(papa != null){
+                papa.cuelga(gamma);
+            }else{
+                gamma.setPapa(null);
+                raiz = gamma;
+            }
 
             beta.setFe(-1);
             alfa.setFe(0);
             gamma.setFe(0);
 
+            return gamma;
+        }else if(N.getFe() == 2 && N.getIzq().getFe() >= 0){
+            alfa = N;
+            papa = N.getPapa();
+            beta = alfa.getDer();
+            gamma = beta.getDer();
+            A = alfa.getIzq();
+            B = beta.getIzq();
+            C = gamma.getIzq();
+            D = gamma.getDer();
+            
+            alfa.cuelga(A);
+            alfa.cuelga(B);
+            gamma.cuelga(C);
+            gamma.cuelga(D);
+            beta.cuelga(alfa);
+            beta.cuelga(gamma);
+            
+            if(papa != null){
+                papa.cuelga(beta);
+            }else{
+                beta.setPapa(null);
+                raiz = beta;
+            }
+            
+            //factores
+            
+            return beta;
+        }else{
+            alfa = N;
+            papa = N.getPapa();
+            beta = alfa.getDer();
+            gamma = beta.getIzq();
+            A = alfa.getIzq();
+            B = gamma.getIzq();
+            C = gamma.getDer();
+            D = beta.getDer();
+            
+            alfa.cuelga(A);
+            alfa.cuelga(B);
+            beta.cuelga(C);
+            beta.cuelga(D);
+            gamma.cuelga(alfa);
+            gamma.cuelga(beta);
+            
+            if(papa != null){
+                papa.cuelga(gamma);
+            }else{
+                gamma.setPapa(null);
+                raiz = gamma;
+            }
+            
             return gamma;
         }
     }
