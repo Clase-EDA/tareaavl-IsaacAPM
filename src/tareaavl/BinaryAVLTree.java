@@ -3,7 +3,7 @@ package tareaavl;
 import java.lang.NullPointerException;
 
 public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<T>{
-    public NodoBTAVL<T> raiz;
+    private NodoBTAVL<T> raiz;
     private int cont;
 
     public BinaryAVLTree(){
@@ -34,8 +34,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
         if(act == null){
             return null;
         }
-        
-        if (act.getDato().equals(dato)){
+        if(act.getDato().equals(dato)){
             return act;
         }
 
@@ -49,7 +48,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
         if(izq != null){
             return izq;
         }
-
+        
         return null;
     }
 
@@ -178,6 +177,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
                         reacomodaFEBorra(aux2, der);
                     }                 
                 }
+                cont--;
             }
             return resp;
         }else{
@@ -189,7 +189,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
         return "";
     }
     
-    public NodoBTAVL buscaSucesorInOrden(NodoBTAVL<T> nodo){
+    private NodoBTAVL buscaSucesorInOrden(NodoBTAVL<T> nodo){
         NodoBTAVL<T> ant = nodo.getDer();
         NodoBTAVL<T> act = ant.getIzq();
         while(act != null){

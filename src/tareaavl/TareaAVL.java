@@ -20,11 +20,10 @@ public class TareaAVL {
         avl.add(7);
         avl.add(10);
         avl.add(4);
-        System.out.println(avl.raiz);
+        avl.add(11);
         //avl.remove(4);
-        System.out.println(avl.raiz.getDer());
-        System.out.println(avl.raiz.getIzq());
-        System.out.println(avl.raiz.getIzq().getIzq());
+        //System.out.println(avl.find(11));
+       
     }
     
 }
