@@ -271,7 +271,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
 
             //reacomodar los factores de equilibrio
 
-            if(alfa.getFe() == -2){
+            if(beta.getFe() == -1){
                 alfa.setFe(0);
                 beta.setFe(0);
             }else{
@@ -302,10 +302,20 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
                 gamma.setPapa(null);
                 raiz = gamma;
             }
-
-            beta.setFe(-1);
-            alfa.setFe(0);
-            gamma.setFe(0);
+            
+            if(gamma.getFe() == 0){
+                beta.setFe(0);
+                alfa.setFe(0);
+                gamma.setFe(0);
+            }else if(gamma.getFe() == 1){
+                beta.setFe(-1);
+                alfa.setFe(0);
+                gamma.setFe(0);
+            }else{
+                beta.setFe(0);
+                alfa.setFe(1);
+                gamma.setFe(0);
+            }
 
             return gamma;
         }else if(N.getFe() == 2 && N.getIzq().getFe() >= 0){
@@ -333,6 +343,13 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
             }
             
             //factores
+            if(beta.getFe() == 1){
+                alfa.setFe(0);
+                beta.setFe(0);
+            }else{
+                alfa.setFe(1);
+                alfa.setFe(-1);
+            }
             
             return beta;
         }else{
@@ -357,6 +374,21 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
             }else{
                 gamma.setPapa(null);
                 raiz = gamma;
+            }
+            
+            //factores
+            if(gamma.getFe() == 0){
+                beta.setFe(0);
+                alfa.setFe(0);
+                gamma.setFe(0);
+            }else if(gamma.getFe() == 1){
+                beta.setFe(0);
+                alfa.setFe(-1);
+                gamma.setFe(0);
+            }else{
+                beta.setFe(1);
+                alfa.setFe(0);
+                gamma.setFe(0);
             }
             
             return gamma;
