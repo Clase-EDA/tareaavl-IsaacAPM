@@ -200,7 +200,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
     }
 
     private void reacomodaFEAgrega(NodoBTAVL<T> act){
-        if(act != null){
+        if(act != null && act.getPapa() != null){
             NodoBTAVL<T> papa = act.getPapa();
         
             if(papa.getDer() == act){
@@ -318,7 +318,7 @@ public class BinaryAVLTree<T extends Comparable<T>> implements BinaryAVLTreeADT<
             }
 
             return gamma;
-        }else if(N.getFe() == 2 && N.getIzq().getFe() >= 0){
+        }else if(N.getFe() == 2 && N.getDer().getFe() >= 0){
             alfa = N;
             papa = N.getPapa();
             beta = alfa.getDer();
